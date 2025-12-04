@@ -12,7 +12,7 @@ df = pd.read_csv(DATASET_PATH)
 print("Dataset loaded successfully")
 
 #Drop the Customer ID column as this is unique for each customer and will not help in prediction.
-df=df.drop(columns=['CustomerID'],inplace=True)
+df = df.drop(columns=['CustomerID']) # Removed inplace=True and re-assigned
 df['Gender']=df['Gender'].replace('Fe Male','Female')
 
 
@@ -20,7 +20,7 @@ label_encoder=LabelEncoder()
 df['TypeofContact']=label_encoder.fit_transform(df['TypeofContact'])
 df['Occupation']=label_encoder.fit_transform(df['Occupation'])
 df['Gender']=label_encoder.fit_transform(df['Gender'])
-df['ProductionPitched']=label_encoder.fit_transform(df['ProductionPitched'])
+df['ProductPitched']=label_encoder.fit_transform(df['ProductPitched']) # Corrected typo from ProductionPitched
 df['MaritalStatus']=label_encoder.fit_transform(df['MaritalStatus'])
 df['Designation']=label_encoder.fit_transform(df['Designation'])
 
@@ -43,4 +43,3 @@ for file_path in files:
       repo_id="Harsha1001/Tourism-Package-Prediction",
       repo_type="dataset",
   )
-
