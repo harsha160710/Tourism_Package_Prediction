@@ -1,4 +1,3 @@
-```
 name: Tourism Project Pipeline
 
 on:
@@ -38,7 +37,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install Dependencies
-        run:pip install -r tourism_project/requirements.txt
+        run: pip install -r tourism_project/requirements.txt
       - name: Start MLflow Server
         run: |
           nohup mlflow ui --host 0.0.0.0 --port 5000 &  # Run MLflow UI in the background
@@ -61,4 +60,4 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: python tourism_project/hosting/hosting.py
 
-```
+
