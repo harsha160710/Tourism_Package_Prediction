@@ -81,7 +81,6 @@ model_pipeline = make_pipeline(preprocessor, xgb_model)
 with mlflow.start_run():
     # Hyperparameter tuning
     grid_search = GridSearchCV(model_pipeline, param_grid, cv=5, n_jobs=-1)
-    # Fix: Use x_train and y_train instead of Xtrain and ytrain
     grid_search.fit(x_train, y_train)
 
     # Log all parameter combinations and their mean test scores
@@ -150,7 +149,7 @@ with mlflow.start_run():
     # create_repo("churn-model", repo_type="model", private=False)
     api.upload_file(
         path_or_fileobj="best_tourism_package_model_v1.joblib",
-        path_in_repo="best_tourism_pacage_model_v1.joblib",
+        path_in_repo="best_tourism_package_model_v1.joblib",
         repo_id=repo_id,
         repo_type=repo_type,
     )
