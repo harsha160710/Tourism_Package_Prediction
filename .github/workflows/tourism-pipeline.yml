@@ -1,3 +1,4 @@
+```
 name: Tourism Project Pipeline
 
 on:
@@ -24,11 +25,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install Dependencies
-        run: pip install -r tourism_package/requirements.txt
+        run: pip install -r tourism_project/requirements.txt
       - name: Run Data Preparation
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: python tourism_package/model_building/prep.py
+        run: python tourism_project/model_building/prep.py
 
 
   model-traning:
@@ -37,7 +38,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install Dependencies
-        run: pip install -r tourism_project/requirements.txt
+        run:pip install -r tourism_project/requirements.txt
       - name: Start MLflow Server
         run: |
           nohup mlflow ui --host 0.0.0.0 --port 5000 &  # Run MLflow UI in the background
@@ -45,7 +46,7 @@ jobs:
       - name: Model Building
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: python tourism_package/model_building/train.py
+        run: python tourism_project/model_building/train.py
 
 
   deploy-hosting:
@@ -59,3 +60,5 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: python tourism_project/hosting/hosting.py
+
+```
