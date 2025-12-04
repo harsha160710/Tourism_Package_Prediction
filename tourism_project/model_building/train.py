@@ -26,10 +26,10 @@ Xtest_path = "hf://datasets/Harsha1001/Tourism-Package-Prediction/xtest.csv"
 ytrain_path = "hf://datasets/Harsha1001/Tourism-Package-Prediction/ytrain.csv"
 ytest_path = "hf://datasets/Harsha1001/Tourism-Package-Prediction/ytest.csv"
 
-xtrain = pd.read_csv(Xtrain_path)
-xtest = pd.read_csv(Xtest_path)
-ytrain = pd.read_csv(ytrain_path)
-ytest = pd.read_csv(ytest_path)
+x_train = pd.read_csv(Xtrain_path)
+x_test = pd.read_csv(Xtest_path)
+y_train = pd.read_csv(ytrain_path)
+y_test = pd.read_csv(ytest_path)
 
 # One-hot encode 'Type' and scale numeric features
 numeric_features = [
@@ -105,7 +105,6 @@ with mlflow.start_run():
 
     classification_threshold = 0.45
 
-    # Fix: Use x_train and x_test instead of Xtrain and Xtest
     y_pred_train_proba = best_model.predict_proba(x_train)[:, 1]
     y_pred_train = (y_pred_train_proba >= classification_threshold).astype(int)
 
